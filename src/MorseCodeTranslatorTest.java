@@ -38,4 +38,12 @@ public class MorseCodeTranslatorTest {
         MorseCodeTranslator myTranslator = new MorseCodeTranslator();
         assertEquals("???", myTranslator.morseToEnglish("--... --... --..."));
     }
+
+    @Test
+    void testPrintMorseAlphabet() {
+        MorseCodeTranslator myTranslator = new MorseCodeTranslator();
+        assertEquals("A = .-\nB = -...\nC = -.-.\nD = -..\nE = .\nF = ..-.\nG = --.\nH = ....\nI = .." +
+                "\nJ = .---\nK = -.-\nL = .-..\nM = --\nN = -.\nO = ---\nP = .--.\nQ = --.-\nR = .-.\nS = ..." +
+                "\nT = -\nU = ..-\nV = ...-\nW = .--\nX = -..-\nY = -.--\nZ = --..", myTranslator.printMorseAlphabet());
+    }
 }

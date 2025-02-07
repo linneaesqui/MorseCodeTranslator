@@ -4,10 +4,12 @@ public class MorseCodeTranslator {
 
     private static final HashMap <String, String> morseToLetter = new HashMap<>();
     private static final HashMap <String, String> letterToMorse = new HashMap<>();
+    private String [] letters;
+    private String [] morseCode;
 
     public MorseCodeTranslator() {
-        String [] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-        String [] morseCode = (".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- " +
+        letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        morseCode = (".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- " +
                 "-. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..").split(" ");
         for (int i = 0; i < letters.length; i++) {
             morseToLetter.put(morseCode[i], letters[i]);
@@ -47,5 +49,12 @@ public class MorseCodeTranslator {
             } result += "  ";
         }
         return result.trim();
+    }
+
+    public String printMorseAlphabet() {
+        String result = "";
+        for (String key : letterToMorse.keySet()) {
+            result += key + " = " + letterToMorse.get(key) + "\n";
+        } return result.trim();
     }
 }
