@@ -27,6 +27,7 @@ public class MorseCodeTranslatorMain {
                     System.out.println(myTranslator.morseToEnglish(scan.nextLine()));
                     break;
                 case 3:
+                    System.out.println(myTranslator.printMorseAlphabet());
                     break;
                 case 4:
                     System.out.println("Program closing down...");
