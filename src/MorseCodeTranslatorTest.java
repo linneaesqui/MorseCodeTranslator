@@ -46,4 +46,16 @@ public class MorseCodeTranslatorTest {
                 "\nJ = .---\nK = -.-\nL = .-..\nM = --\nN = -.\nO = ---\nP = .--.\nQ = --.-\nR = .-.\nS = ..." +
                 "\nT = -\nU = ..-\nV = ...-\nW = .--\nX = -..-\nY = -.--\nZ = --..", myTranslator.printMorseAlphabet());
     }
+
+    @Test
+    void testEmptyStringMTE() {
+        MorseCodeTranslator myTranslator = new MorseCodeTranslator();
+        assertEquals("", myTranslator.morseToEnglish("      "));
+    }
+
+    @Test
+    void testEmptyStringETM() {
+        MorseCodeTranslator myTranslator = new MorseCodeTranslator();
+        assertEquals("", myTranslator.englishToMorse("      "));
+    }
 }
