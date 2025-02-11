@@ -2,13 +2,13 @@ import java.util.HashMap;
 
 public class MorseCodeTranslator {
 
-    private static final HashMap <String, String> morseToLetter = new HashMap<>();
-    private static final HashMap <String, String> letterToMorse = new HashMap<>();
+    private final HashMap <String, String> morseToLetter = new HashMap<>();
+    private final HashMap <String, String> letterToMorse = new HashMap<>();
 
     public MorseCodeTranslator() {
-        String [] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
         String [] morseCode = (".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- " +
                 "-. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..").split(" ");
+        String[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
         for (int i = 0; i < letters.length; i++) {
             morseToLetter.put(morseCode[i], letters[i]);
             letterToMorse.put(letters[i], morseCode[i]);
@@ -17,13 +17,17 @@ public class MorseCodeTranslator {
 
     public String morseToEnglish(String input) {
         //IntelliJ gillar inte att man konkatenerar en String i en loop, detta för att en String görs om
-        //varje gång man vill ändra den. Förslaget var StringBuilder, som istället byggs på, och på så sätt sparar
-        //prestanda.
+        //varje gång man vill ändra den. Det är egentligen ingen skillnad på += och concat(), metoderna gör detsamma.
+        //Förslaget var StringBuilder, som istället byggs på, och på så sätt sparar prestanda.
         StringBuilder result = new StringBuilder();
         //Jag behövde ett sätt att räkna de tomma platserna i min Array, detta för att på ett korrekt sätt kunna
         //behandla mellanslag i mitt program.
         int spaceCount = 0;
         input = input.trim();
+
+        if (input.isEmpty()) {
+            return "";
+        }
         String [] letters = input.split(" ");
         for (String letter : letters) {
             if (letter.isEmpty()) {
@@ -48,6 +52,10 @@ public class MorseCodeTranslator {
     public String englishToMorse(String input) {
         StringBuilder result = new StringBuilder();
         input = input.trim().toUpperCase();
+
+        if (input.isEmpty()) {
+            return "";
+        }
         String [] words = input.split(" ");
         for (String word : words) {
             //Här behöver vi inte räkna mellanslag, om det blivit ett extra mellanslag i input kan vi räkna med att det
@@ -63,7 +71,7 @@ public class MorseCodeTranslator {
             //...och ytterligare två mellanslag mellan varje ord...
             } result.append("  ");
         }
-        //...och slutligen trimmar vi bort överflödiga mellanslag.
+        //...och slutligen översätter vi vår StringBuilder till en String och trimmar bort överflödiga mellanslag.
         return result.toString().trim();
     }
 
