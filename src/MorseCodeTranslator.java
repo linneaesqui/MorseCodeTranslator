@@ -1,3 +1,13 @@
+//Saker som jag lagt till/tolkat:
+//Jag vill översätta mellanslag korrekt åt båda hållen (ett mellanslag mellan bokstäver och tre mellan ord i morse-kod).
+//Jag vill att specialtecken och tecken utanför det engelska alfabetet ska översättas med ett frågetecken,
+//så att användaren lätt ska kunna se vilket tecken som inte gick att översätta.
+//Ovannämnda lösning gör också att eventuella felinmatningar undviks, vilket ger programmet mer resiliens.
+//Dock vill jag att inmatningar som endast ger frågetecken i översättningen ska ge ett felmeddelande om att "No matches found",
+//detta för att undvika förvirring.
+//Tomma rader ska ge ett felmeddelande om att raden är tom, användaren får fortsätta tills korrekt inmatning skett.
+//Ogiltigt menyval ska ge ett felmeddelande om ogiltigt val, användaren får fortsätta tills korrekt inmatning skett.
+//Jag vill ha en metod för att kunna skriva ut hela morse-alfabetet från menyn i min Main.
 import java.util.HashMap;
 
 public class MorseCodeTranslator {
