@@ -2,13 +2,16 @@ import java.util.HashMap;
 
 public class MorseCodeTranslator {
 
-    private final HashMap <String, String> morseToLetter = new HashMap<>();
-    private final HashMap <String, String> letterToMorse = new HashMap<>();
+    //Min första lösning var en HashMap med två Strings, men efter att ha gjort lite research läste jag att det är mer
+    //effektivt att ha en Character som objekt, då det kostar mindre i prestanda. Jag valde att göra två HashMaps,
+    //helt enkelt för att det var lättast.
+    private final HashMap <String, Character> morseToLetter = new HashMap<>();
+    private final HashMap <Character, String> letterToMorse = new HashMap<>();
 
     public MorseCodeTranslator() {
         String [] morseCode = (".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- " +
                 "-. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..").split(" ");
-        String[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        char [] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         for (int i = 0; i < letters.length; i++) {
             morseToLetter.put(morseCode[i], letters[i]);
             letterToMorse.put(letters[i], morseCode[i]);
@@ -23,10 +26,11 @@ public class MorseCodeTranslator {
         //Jag behövde ett sätt att räkna de tomma platserna i min Array, detta för att på ett korrekt sätt kunna
         //behandla mellanslag i mitt program.
         int spaceCount = 0;
+        //Vi trimmar bort alla mellanslag före och efter eventuella tecken för att kunna kontrollera om input är tom.
         input = input.trim();
 
         if (input.isEmpty()) {
-            return "";
+            return input;
         }
         String [] letters = input.split(" ");
         for (String letter : letters) {
@@ -45,16 +49,17 @@ public class MorseCodeTranslator {
                 spaceCount = 0;
             }
             //Jag hittade metoden getOrDefault, som nu returnerar ett frågetecken om vi inte hittar bokstaven i vår HashMap.
-            result.append(morseToLetter.getOrDefault(letter, "?"));
+            result.append(morseToLetter.getOrDefault(letter, '?'));
         } return result.toString().trim();
     }
 
     public String englishToMorse(String input) {
         StringBuilder result = new StringBuilder();
+
         input = input.trim().toUpperCase();
 
         if (input.isEmpty()) {
-            return "";
+            return input;
         }
         String [] words = input.split(" ");
         for (String word : words) {
@@ -64,9 +69,9 @@ public class MorseCodeTranslator {
                 continue;
             }
             //Vi delar upp orden i bokstäver för att kunna använda vår HashMap.
-            String [] letters = word.split("");
+            char [] letters = word.toCharArray();
             //I utskriften vill i lägga till ett mellanslag mellan varje bokstav...
-            for (String letter : letters) {
+            for (char letter : letters) {
                 result.append(letterToMorse.getOrDefault(letter, "?")).append(" ");
             //...och ytterligare två mellanslag mellan varje ord...
             } result.append("  ");
@@ -77,7 +82,7 @@ public class MorseCodeTranslator {
 
     public String printMorseAlphabet() {
         StringBuilder result = new StringBuilder();
-        for (String key : letterToMorse.keySet()) {
+        for (char key : letterToMorse.keySet()) {
             result.append(key).append(" = ").append(letterToMorse.get(key)).append("\n");
         } return result.toString().trim();
     }

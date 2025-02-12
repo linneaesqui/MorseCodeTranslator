@@ -25,8 +25,11 @@ public class MorseCodeTranslatorMain {
                         System.out.println("Write the message you want to translate to Morse (only English letters):");
                         while (true) {
                             String input = scan.nextLine();
+                            //Vi skriver ut ett felmeddelande för en tom string.
                             if (input.isEmpty()) {
                                 System.out.println("Empty string, please try again!");
+                            //Vi skriver ut ett felmeddelande om det inte finns några matchande tecken, pga att jag
+                            //upplevde det förvirrande om man bara fick tillbaka frågetecken.
                             } else if (myTranslator.englishToMorse(input).matches("^\\?([ ?]*\\?)?$")) {
                                 System.out.println("No matches found!");
                                 break;
