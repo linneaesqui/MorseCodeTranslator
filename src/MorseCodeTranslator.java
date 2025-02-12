@@ -5,10 +5,13 @@ public class MorseCodeTranslator {
     //Min första lösning var en HashMap med två Strings, men efter att ha gjort lite research läste jag att det är mer
     //effektivt att ha en Character som objekt, då det kostar mindre i prestanda. Jag valde att göra två HashMaps,
     //helt enkelt för att det var lättast.
-    private final HashMap <String, Character> morseToLetter = new HashMap<>();
-    private final HashMap <Character, String> letterToMorse = new HashMap<>();
+    private static final HashMap <String, Character> morseToLetter = new HashMap<>();
+    private static final HashMap <Character, String> letterToMorse = new HashMap<>();
 
-    public MorseCodeTranslator() {
+    //För att slippa köra koden varje gång ett objekt skapas, bytte jag ut kontruktorn mot ett static block, vilket innebär
+    //att koden bara körs en gång när klassen skapas, och lagras i klassen istället för i varje objekt. FÖr att detta ska
+    //fungera måste HashMapsen också sättas till static.
+    static {
         String [] morseCode = (".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- " +
                 "-. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..").split(" ");
         char [] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
