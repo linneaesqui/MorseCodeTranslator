@@ -51,8 +51,8 @@ public class MorseCodeTranslatorMain {
                                 System.out.println("No matches found!");
                                 break;
                             } else {
-                                System.out.println("Your Morse Code message was:\n" + input);
-                                System.out.println("The English translation is:\n" + myTranslator.morseToEnglish(input));
+                                System.out.println("Your message was:\n" + input);
+                                System.out.println("The translation is:\n" + myTranslator.morseToEnglish(input));
                                 break;
                             }
                         }
