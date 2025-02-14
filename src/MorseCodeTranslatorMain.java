@@ -10,11 +10,15 @@ public class MorseCodeTranslatorMain {
 
         System.out.println("Welcome to the Morse Code Translator!");
         while (isRunning) {
-            System.out.println("What do you want to do?" +
-                    "\n1. Translate English to Morse" +
-                    "\n2. Translate Morse to English" +
-                    "\n3. Print Morse alphabet" +
-                    "\n4. Exit program");
+            //IntelliJ ville byta ut långa konkateneringar mot ett textblock. Ett textblock behåller alla radbyten och
+            //markeras med """ i början och slutet. För en längre text med många radbyten blir koden mer lättläslig med
+            //testblock istället för konkateneringar.
+            System.out.println("""
+                    What do you want to do?
+                    1. Translate English to Morse
+                    2. Translate Morse to English
+                    3. Print Morse alphabet
+                    4. Exit program""");
             //Vi kastar ett NumberFormatException för att fånga upp om användaren skriver in nåt annat än siffror.
             //Ogiltiga siffror fångas upp i default.
             try {
